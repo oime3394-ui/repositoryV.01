@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="🧪 Pre-Fire Check Prototype"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="#0B3A67" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:layout_marginBottom="14dp"
+            android:text="เช็คเลขพัสดุกับ JMS ก่อนตัดสิน PASS/BLOCK (เดโม ยังไม่เชื่อมฮาร์ดแวร์จริง)"
+            android:textSize="12sp"
+            android:textColor="#6B7688" />
+
+        <!-- ตั้งค่า -->
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:text="⚙️ ตั้งค่า" android:textStyle="bold" android:textSize="13sp"
+            android:layout_marginBottom="4dp" />
+
+        <EditText android:id="@+id/tokenInput"
+            android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:hint="JMS authToken" android:textSize="12sp" />
+
+        <EditText android:id="@+id/timeoutInput"
+            android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:hint="Timeout จำลอง (ms)" android:inputType="number"
+            android:textSize="12sp" android:layout_marginBottom="12dp" />
+
+        <!-- ทดสอบ -->
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:text="📦 ทดสอบทีละรายการ" android:textStyle="bold" android:textSize="13sp"
+            android:layout_marginBottom="4dp" />
+
+        <EditText android:id="@+id/chuteInput"
+            android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:hint="เลขช่องคัดแยก เช่น 1, 43, 140" android:textSize="13sp" />
+
+        <EditText android:id="@+id/packageInput"
+            android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:hint="เลขพัสดุ เช่น B340429461" android:textSize="13sp"
+            android:layout_marginBottom="8dp" />
+
+        <Button android:id="@+id/testBtn"
+            android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:text="🔍 ทดสอบยิง" android:backgroundTint="#1D6FB8"
+            android:textColor="#FFFFFF" android:layout_marginBottom="14dp" />
+
+        <!-- ป้ายผลลัพธ์ -->
+        <LinearLayout android:id="@+id/bannerLayout"
+            android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:orientation="vertical" android:padding="16dp"
+            android:visibility="gone" android:layout_marginBottom="14dp"
+            android:background="#EEEEEE">
+
+            <TextView android:id="@+id/decisionText"
+                android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:textSize="22sp" android:textStyle="bold" android:gravity="center" />
+
+            <TextView android:id="@+id/decisionDetail"
+                android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:textSize="12.5sp" android:textColor="#6B7688"
+                android:layout_marginTop="4dp" android:gravity="center" />
+
+            <TextView android:id="@+id/decisionLatency"
+                android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:textSize="11sp" android:textColor="#6B7688"
+                android:layout_marginTop="6dp" android:gravity="center" />
+        </LinearLayout>
+
+        <!-- สถิติ -->
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:text="📊 สรุปการทดสอบ" android:textStyle="bold" android:textSize="13sp"
+            android:layout_marginBottom="6dp" />
+
+        <GridLayout
+            android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:columnCount="3" android:layout_marginBottom="14dp">
+
+            <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content"
+                android:layout_columnWeight="1" android:orientation="vertical" android:gravity="center" android:padding="6dp">
+                <TextView android:id="@+id/statTotal" android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:text="0" android:textSize="18sp" android:textStyle="bold" android:textColor="#0B3A67" />
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:text="ทดสอบทั้งหมด" android:textSize="10sp" android:textColor="#6B7688" />
+            </LinearLayout>
+
+            <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content"
+                android:layout_columnWeight="1" android:orientation="vertical" android:gravity="center" android:padding="6dp">
+                <TextView android:id="@+id/statPass" android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:text="0" android:textSize="18sp" android:textStyle="bold" android:textColor="#0F9D58" />
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:text="PASS" android:textSize="10sp" android:textColor="#6B7688" />
+            </LinearLayout>
+
+            <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content"
+                android:layout_columnWeight="1" android:orientation="vertical" android:gravity="center" android:padding="6dp">
+                <TextView android:id="@+id/statBlock" android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:text="0" android:textSize="18sp" android:textStyle="bold" android:textColor="#E5484D" />
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:text="BLOCK" android:textSize="10sp" android:textColor="#6B7688" />
+            </LinearLayout>
+
+            <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content"
+                android:layout_columnWeight="1" android:orientation="vertical" android:gravity="center" android:padding="6dp">
+                <TextView android:id="@+id/statAvgLatency" android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:text="-" android:textSize="18sp" android:textStyle="bold" android:textColor="#0B3A67" />
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:text="เฉลี่ย (ms)" android:textSize="10sp" android:textColor="#6B7688" />
+            </LinearLayout>
+
+            <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content"
+                android:layout_columnWeight="1" android:orientation="vertical" android:gravity="center" android:padding="6dp">
+                <TextView android:id="@+id/statMaxLatency" android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:text="-" android:textSize="18sp" android:textStyle="bold" android:textColor="#0B3A67" />
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:text="สูงสุด (ms)" android:textSize="10sp" android:textColor="#6B7688" />
+            </LinearLayout>
+
+            <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content"
+                android:layout_columnWeight="1" android:orientation="vertical" android:gravity="center" android:padding="6dp">
+                <TextView android:id="@+id/statFitWindow" android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:text="-" android:textSize="18sp" android:textStyle="bold" android:textColor="#0B3A67" />
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:text="เข้าหน้าต่างเวลา" android:textSize="10sp" android:textColor="#6B7688" />
+            </LinearLayout>
+        </GridLayout>
+
+        <!-- log -->
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:text="📋 Log การทดสอบ" android:textStyle="bold" android:textSize="13sp"
+            android:layout_marginBottom="6dp" />
+
+        <LinearLayout android:id="@+id/logContainer"
+            android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:orientation="vertical" />
+
+    </LinearLayout>
+</androidx.core.widget.NestedScrollView>
